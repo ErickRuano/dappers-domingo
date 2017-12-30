@@ -715,26 +715,40 @@
     }
 
 
-    $(document).click(function(evt){
+    $(document).mousedown(function(evt){
+      
       var x = evt.originalEvent.clientX
-      var y = evt.originalEvent.clientY
 
       var h = $(this).width() / 2;
       var c1 = h - 64;
       var c2 = h + 64;
 
-      if(x > c1 && x < c2){
-        keyLeft = false;
-        keyRight = false;
-        keyFaster = true;
-      }else if(x < c1){
-        keyRight = false;
-        keyLeft = true;
-      }else if(x > c2){
+      // if(x > c1 && x < c2){
+      //   keyLeft = false;
+      //   keyRight = false;
+      //   keyFaster = true;
+      // }else if(x < c1){
+      //   keyRight = false;
+      //   keyLeft = true;
+      // }else if(x > c2){
+      //   keyLeft = false;
+      //   keyRight = true;
+      // }
+
+      if(x > h){
         keyLeft = false;
         keyRight = true;
+      }else{
+        keyRight = false;
+        keyLeft = true;
       }
     })
+
+    $(document).mouseup(function(){
+      keyRight = false;
+      keyLeft = false;
+    })
+
 
     //=========================================================================
     // TWEAK UI HANDLERS
